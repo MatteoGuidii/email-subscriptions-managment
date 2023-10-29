@@ -1,0 +1,70 @@
+/* App.css */
+
+/* Reset */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* HTML and Body */
+html, body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: 16px;
+    line-height: 1.5;
+    overflow-x: hidden;
+}
+
+/* Container */
+.container {
+  width: 80%;
+  padding: 20px;
+  padding-left: 50px;
+  margin: auto;
+  overflow: hidden;
+}
+
+/* Main Content */
+.main-content {
+  padding: 20px;
+  padding-left: 50px;
+  background: #ffffff;
+  margin-top: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.main-content:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Links */
+a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 75%;
+    }
+}

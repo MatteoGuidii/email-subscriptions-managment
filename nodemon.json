@@ -1,0 +1,7 @@
+{
+    "env": {
+        "MONGO_USER": "Matthew_0",
+        "MONGO_PASSWORD": "s5hZsXpIDKB7A4p6",
+        "MONGO_DB": "emailSub-react-dev"
+    }
+}
