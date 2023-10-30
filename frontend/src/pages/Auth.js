@@ -8,7 +8,7 @@ const Auth = () => {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
       <form>
         <input type="email" placeholder="Email" required />

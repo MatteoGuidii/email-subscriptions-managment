@@ -25,7 +25,7 @@ html, body {
 .container {
   width: 80%;
   padding: 20px;
-  padding-left: 50px;
+  padding-left: 20px;
   margin: auto;
   overflow: hidden;
 }
@@ -33,7 +33,7 @@ html, body {
 /* Main Content */
 .main-content {
   padding: 20px;
-  padding-left: 50px;
+  padding-left: 20px;
   background: #ffffff;
   margin-top: 20px;
   border-radius: 12px;
