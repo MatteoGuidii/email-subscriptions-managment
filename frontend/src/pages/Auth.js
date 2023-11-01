@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './Auth.css';
 import LoadingSpinner from './LoadingSpinner';
 
+import './Auth.css';
+
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
