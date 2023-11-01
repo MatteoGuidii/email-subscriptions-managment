@@ -1,30 +1,36 @@
 // src/components/Navigation/MainNavigation.js
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 import './MainNavigation.css'; 
 
 const MainNavigation = () => {
-    return (
-      <header className="main-navigation">
-        <div className="main-navigation__logo">
-          <h1>MyApp</h1>
-        </div>
-        <nav className="main-navigation__items">
-          <ul>
-            <li>
-              <NavLink to="/home" isActive={(match, location) => location.pathname === "/home"}>Home</NavLink>
-            </li>
-            <li>
-              <NavLink to="/auth" isActive={(match, location) => location.pathname === "/auth"}>Authenticate</NavLink>
-            </li>
-            <li>
-              <NavLink to="/dashboard" isActive={(match, location) => location.pathname === "/dashboard"}>Dashboard</NavLink>
-            </li>
-          </ul>
-        </nav>
-      </header>
-    );
-  };
-  
+  const { isAuthenticated } = useContext(AuthContext);
+
+  return (
+    <header className="main-navigation">
+      {/* ...other code */}
+      <nav className="main-navigation__items">
+        <ul>
+          {isAuthenticated && (
+            <>
+              <li>
+                <NavLink to="/home" isActive={(match, location) => location.pathname === "/home"}>Home</NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard" isActive={(match, location) => location.pathname === "/dashboard"}>Dashboard</NavLink>
+              </li>
+            </>
+          )}
+          <li>
+            <NavLink to="/auth" isActive={(match, location) => location.pathname === "/auth"}>Authenticate</NavLink>
+          </li>
+        </ul>
+      </nav>
+      {/* ...other code */}
+    </header>
+  );
+};
 
 export default React.memo(MainNavigation);
+

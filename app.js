@@ -3,6 +3,7 @@ const express = require('express');   //Imported express from the express packag
 const bodyParser = require('body-parser');
 const { graphqlHTTP } = require('express-graphql');
 const mongoose = require('mongoose');
+const gmailRoutes = require('./routes/gmail');  // Import the new gmail route
 
 
 //Configuration DB
@@ -28,6 +29,7 @@ const app = express();
 //Middleware
 app.use(bodyParser.json());  //To parse incoming json body
 app.use('/login', authRoutes);  // Authentication route
+app.use('/gmail', gmailRoutes);  // Use the new gmail route
 
 app.use(authCheck); // Add this line to check for authentication on subsequent routes
 
