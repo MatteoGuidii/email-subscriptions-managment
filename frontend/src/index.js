@@ -1,13 +1,17 @@
+// src/index.js
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { AuthProvider } from './context/AuthContext';  // Adjusted this line
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <AuthProvider>  {/* Adjusted this line */}
+      <App />
+    </AuthProvider>  {/* Adjusted this line */}
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -9,7 +9,6 @@ const MainNavigation = () => {
 
   return (
     <header className="main-navigation">
-      {/* ...other code */}
       <nav className="main-navigation__items">
         <ul>
           {isAuthenticated && (
@@ -27,7 +26,6 @@ const MainNavigation = () => {
           </li>
         </ul>
       </nav>
-      {/* ...other code */}
     </header>
   );
 };
