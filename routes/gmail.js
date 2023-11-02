@@ -1,15 +1,13 @@
-// routes/gmail.js
-
 const express = require('express');
 const { google } = require('googleapis');
 const OAuth2Data = require('../jsonCredentials.json');
-
+const User = require('../models/User'); // Ensure this path is correct
 const router = express.Router();
 
+// Google OAuth configuration
 const CLIENT_ID = OAuth2Data.web.client_id;
 const CLIENT_SECRET = OAuth2Data.web.client_secret;
 const REDIRECT_URL = OAuth2Data.web.redirect_uris[0];
-
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URL);
 const gmail = google.gmail({ version: 'v1', auth: oAuth2Client });
 
@@ -32,7 +30,6 @@ router.get('/auth/callback', async (req, res) => {
             return;
         }
 
-        // Assuming User model has a field for storing Gmail tokens
         const user = await User.findById(req.userId);
         if (!user) {
             res.status(404).send('User not found');

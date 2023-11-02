@@ -7,7 +7,9 @@ const userSchema = new Schema({
     email: {
         type: String,
         required: true,
-        unique: true  // to ensure one user per email
+        unique: true,
+        lowercase: true,
+        trim: true,
     },
     password: {
         type: String,
@@ -22,7 +24,7 @@ const userSchema = new Schema({
         default: false
     },
     confirmationToken: String,
-    gmailTokens: {  // New field for storing Gmail tokens
+    gmailTokens: {
         access_token: String,
         refresh_token: String,
         scope: String,
@@ -31,15 +33,14 @@ const userSchema = new Schema({
     },
 });
 
-// Hash user's password before saving it to the database
 userSchema.pre('save', async function(next) {
     try {
-        if (!this.isModified('password')) return next();  // only hash if the password has been changed
+        if (!this.isModified('password')) return next();
 
         const salt = await bcrypt.genSalt(10);
         const hash = await bcrypt.hash(this.password, salt);
 
-        this.password = hash;  // set the hashed password back on the user object
+        this.password = hash; 
         next();
     } catch (error) {
         next(error);
@@ -48,10 +49,12 @@ userSchema.pre('save', async function(next) {
 
 userSchema.methods.isValidPassword = async function(password) {
     try {
-        return await bcrypt.compare(password, this.password);  // compare entered password with the hashed one
+        return await bcrypt.compare(password, this.password);
     } catch (error) {
-        throw new Error(error);
+        console.error('Error while validating password:', error);
+        return false;
     }
 }
 
-module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
+module.exports = User;

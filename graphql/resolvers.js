@@ -1,6 +1,6 @@
 const Email = require('../models/email');
 const Subscription = require('../models/subscription');
-const User = require('../models/user');
+const User = require('../models/User');
 
 const resolvers = {
     getEmailSubscriptions: async (args, req) => {
