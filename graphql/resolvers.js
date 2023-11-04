@@ -1,6 +1,10 @@
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 const Email = require('../models/email');
 const Subscription = require('../models/subscription');
 const User = require('../models/User');
+require('dotenv').config();
+
 
 const resolvers = {
     getEmailSubscriptions: async (args, req) => {
@@ -34,22 +38,15 @@ const resolvers = {
 
     createUser: async (args) => {
         try {
-            // Check if user already exists
             const existingUser = await User.findOne({ email: args.input.email });
             if (existingUser) {
                 throw new Error('User already exists.');
             }
-
-            // Create new user instance
             const user = new User({
                 email: args.input.email,
-                password: args.input.password // Automatically hashed due to pre-save hook
+                password: args.input.password
             });
-
-            // Save user to the database
             const savedUser = await user.save();
-
-            // Check if the email already exists, if not, create one
             let userEmail = await Email.findOne({ address: args.input.email });
             if (!userEmail) {
                 userEmail = new Email({
@@ -57,16 +54,30 @@ const resolvers = {
                 });
                 await userEmail.save();
             }
-
-            // Return the saved user without the password
             return { ...savedUser._doc, password: null };
         } catch (error) {
             throw error;
         }
     },
 
+    login: async (args) => {
+        const user = await User.findOne({ email: args.email });
+        if (!user) {
+            throw new Error('User not found.');
+        }
+        const isValid = await user.isValidPassword(args.password);
+        if (!isValid) {
+            throw new Error('Incorrect password.');
+        }
+        const token = jwt.sign(
+            { userId: user.id, email: user.email },
+            process.env.SECRET_KEY,
+            { expiresIn: '1h' }
+        );
+        return { userId: user.id, token: token, tokenExpiration: 1 };
+    },
+
     createEmail: async (args) => {
-        // Check if email already exists, if not, create one
         let userEmail = await Email.findOne({ address: args.input.address });
         if (userEmail) {
             throw new Error('Email already exists.');
@@ -95,6 +106,5 @@ const resolvers = {
         return subscription;
     }
 }
-
 
 module.exports = resolvers;

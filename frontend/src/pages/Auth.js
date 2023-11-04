@@ -16,7 +16,7 @@ const Auth = () => {
   };
 
   const validateEmail = (email) => {
-    const re = /^(([^<>()\[\]\\.,;:\s@\"]+(\.[^<>()\[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     return re.test(email);
   };
 
@@ -41,16 +41,30 @@ const Auth = () => {
     setError('');
     setIsLoading(true);
 
-    const requestBody = {
-      query: `
-        mutation {
-          createUser(input: {email: "${email}", password: "${password}"}) {
-            _id
-            email
-          }
+    let requestBody;
+if (isLogin) {
+  requestBody = {
+    query: `
+      query {
+        login(email: "${email}", password: "${password}") {
+          userId
+          token
         }
-      `
-    };
+      }
+    `
+  };
+} else {
+  requestBody = {
+    query: `
+      mutation {
+        createUser(input: {email: "${email}", password: "${password}"}) {
+          _id
+          email
+        }
+      }
+    `
+  };
+}
 
     try {
       const response = await fetch('http://localhost:5000/graphql', {

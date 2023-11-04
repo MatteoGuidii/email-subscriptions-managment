@@ -1,7 +1,7 @@
 const express = require('express');
 const { google } = require('googleapis');
 const OAuth2Data = require('../jsonCredentials.json');
-const User = require('../models/User'); // Ensure this path is correct
+const User = require('../models/User'); 
 const router = express.Router();
 
 // Google OAuth configuration

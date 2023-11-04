@@ -15,7 +15,13 @@ type Subscription {
 type User {
     _id: ID!
     email: String!
-    password: String   #Its nullable
+    password: String   # Its nullable
+}
+
+type AuthData {
+    userId: ID!
+    token: String!
+    tokenExpiration: Int!
 }
 
 input UserInput {
@@ -39,6 +45,7 @@ enum SubscriptionStatus {
 
 type RootQuery {
     getEmailSubscriptions(email: String!): Email
+    login(email: String!, password: String!): AuthData   # Login Query
 }
 
 type RootMutation {
