@@ -1,44 +1,82 @@
 /* Home.css */
+
+.App {
+    text-align: center;
+  }
+  
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+  
+.content-section {
+    padding: 50px;
+    margin: 50px;
+    border-radius: 8px;
+    background: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    padding: 20px;
-    background-color: var(--background-color);
+    padding: 40px;
+    background-color: #2c3e50; /* Dark blue background */
+    color: #ecf0f1; /* Light text for contrast */
 }
 
 .container h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 4rem; /* Increased size for impact */
+    margin-bottom: 30px; /* More spacing */
 }
 
 .container p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1.4rem; /* Slightly larger for readability */
+    margin-bottom: 40px; /* More spacing */
+    max-width: 600px; /* Optimal line length for readability */
     text-align: center;
 }
 
 .button-container {
     display: flex;
+    justify-content: center;
     gap: 20px;
+    padding: 30px; /* Increased padding for a thicker bar */
+    background-color: #ecf0f1; /* White background for the bar */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    border-radius: 10px; /* Rounded corners for a modern look */
+    margin: 20px 0; /* Add some margin around the bar */
 }
 
+
 .button {
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 15px 40px;
+    font-size: 20px; /* Increase font size for visibility */
+    font-weight: bold; /* Make the text bolder */
     border: none;
-    border-radius: var(--border-radius);
-    background-color: var(--primary-color);
-    color: white;
+    border-radius: 8px; /* Rounded corners for the button */
+    background-color: #3498db; /* Pleasing blue color */
+    color: white; /* Contrast color for the text */
     cursor: pointer;
     text-decoration: none;
-    text-align: center;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* Shadow for a 3D effect */
 }
 
 .button:hover {
-    background-color: #45a049;
+    background-color: #2980b9; /* Darker shade for hover effect */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+    transform: translateY(-2px); /* Slight raise effect on hover */
 }
 

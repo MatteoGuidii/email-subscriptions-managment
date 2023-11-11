@@ -5,16 +5,14 @@ import './Home.css';  // Import the CSS
 
 const Home = () => {
   return (
-    <div className="container">
+    <div className="container" data-aos="zoom-in">
       <h1>Welcome to MyApp</h1>
-      <p>Manage your email subscriptions with ease.</p>
+      <p>This application allows you to manage your email subscriptions. Authenticate to access and manage your subscriptions with ease.</p>
       <div className="button-container">
         <Link to="/auth" className="button">Authenticate</Link>
-        <Link to="/dashboard" className="button">Go to Dashboard</Link>
       </div>
     </div>
   );
 };
 
 export default Home;
-

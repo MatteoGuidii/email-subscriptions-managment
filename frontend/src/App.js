@@ -1,26 +1,47 @@
-// src/App.js
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Auth from './pages/Auth';
-import Dashboard from './pages/Dashboard';
-import MainNavigation from './components/Navigation/MainNavigation';
-import GmailCallback from './components/GmailCallback';
-import Home from './pages/Home';  // Make sure to create this component
+// App.js
 
-import './App.css';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // Import AOS animations CSS
 
-function App() {
+import './App.css'; // Import global styles here
+
+
+// import './pages/Home.css'; // Import the Home page CSS
+
+const App = () => {
+  
+  useEffect(() => {
+    // Initialize AOS with a duration of 1700 milliseconds
+    AOS.init({ duration: 1700 });
+  }, []);
+
   return (
-    <BrowserRouter>
-      <MainNavigation />
-        <Routes>
-          <Route path="/" element={<Home />} />  {/* Set Home as the default route */}
-          <Route path="/auth" element={<Auth />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/gmail/callback" element={<GmailCallback />} />
-        </Routes>
-    </BrowserRouter>
+    <div className="App">
+      {/* Authentication section without horizontal line */}
+      <div className="authentication-section">
+        <button className="auth-button">Authenticate</button>
+      </div>
+      <header className="App-header">
+        <h1>Your Website Title</h1>
+      </header>
+  
+      <main>
+        <section data-aos="fade-up" className="content-section">
+          {/* Content that will fade up on scroll */}
+          <h2>Section Title 1</h2>
+          <p>This content will animate in from the bottom as you scroll down.</p>
+        </section>
+  
+        <section data-aos="fade-right" className="content-section">
+          {/* Another section that will fade in from the right */}
+          <h2>Section Title 2</h2>
+          <p>This content will slide in from the right as you scroll down.</p>
+        </section>
+        {/* You can add as many sections as needed with different data-aos attributes */}
+      </main>
+    </div>
   );
-}
+};
 
 export default App;

@@ -1,23 +1,18 @@
-// src/pages/Dashboard.js
+// src/pages/Home.js
 import React from 'react';
-import GmailAuth from '../components/GmailAuth';
+import { Link } from 'react-router-dom';
+import './Home.css';
 
-const Dashboard = () => {
+const Home = () => {
   return (
     <div className="container">
-      <div className="dashboard">
-        <div className="dashboard-header">
-          <h1>Dashboard</h1>
-          <p>Welcome, User!</p>
-        </div>
-        {/* Placeholder for future content */}
-        <div className="dashboard-content">
-          <p>Your email subscription management will appear here.</p>
-          <GmailAuth />  {/* Include GmailAuth component here */}
-        </div>
+      <h1>Welcome to Email Unsubscriber</h1>
+      <p>This application automates the process of unsubscribing from your email account. Authenticate to get started.</p>
+      <div className="button-container">
+        <Link to="/auth" className="button">Authenticate</Link>
       </div>
     </div>
   );
 };
 
-export default Dashboard;
+export default Home;
