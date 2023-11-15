@@ -90,59 +90,93 @@ if (isLogin) {
   };
 
   return (
-    <div className="container">
-      <div className="auth-container">
-        <div className="info-panel">
-          <h1>Welcome to MyApp</h1>
-          <p>Manage your email subscriptions with ease.</p>
-        </div>
-        <div className="auth-card">
-          {isLoading && (
-            <div className="loading-overlay">
-              <LoadingSpinner />
-            </div>
-          )}
-          <h1>{isLogin ? 'Login' : 'Sign Up'}</h1>
-          {error && <p className="error-text">{error}</p>}
-          <form onSubmit={submitHandler}>
-            <input
-              type="email"
-              placeholder="Email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className={error && !validateEmail(email) ? 'invalid-input' : ''}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className={error && password.trim().length < 6 ? 'invalid-input' : ''}
-            />
-            {!isLogin && (
+    <div className="auth-background">
+      <div className="container">
+        <div className={`form-container ${isLogin ? 'sign-in' : 'sign-up'}`}>
+          {isLogin ? (
+            // Login form
+            <form onSubmit={submitHandler}>
+              <h1>Sign In</h1>
+              {/* Social icons can be added here */}
+              <span>or use your email password</span>
+              <input
+                type="email"
+                placeholder="Email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <button className="forgot-password">
+                Forget Your Password?
+              </button>
+              <button type="submit" disabled={isLoading}>
+                Sign In
+              </button>
+            </form>
+          ) : (
+            // Sign-up form
+            <form onSubmit={submitHandler}>
+              <h1>Create Account</h1>
+              {/* Social icons can be added here */}
+              <span>or use your email for registration</span>
+              <input
+                type="email"
+                placeholder="Email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
               <input
                 type="password"
                 placeholder="Confirm Password"
                 required
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className={error && password !== confirmPassword ? 'invalid-input' : ''}
               />
-            )}
-            <button type="submit" disabled={isLoading}>
-              {isLogin ? 'Login' : 'Sign Up'}
-            </button>
-          </form>
-          <button
-            className="toggle-btn"
-            onClick={switchAuthModeHandler}
-            disabled={isLoading}
-          >
-            Switch to {isLogin ? 'Sign Up' : 'Login'}
-          </button>
+              <button type="submit" disabled={isLoading}>
+                Sign Up
+              </button>
+            </form>
+          )}
         </div>
+        <div className="toggle-container">
+        <div className="toggle">
+          <div className="toggle-panel toggle-left">
+            <h1>Welcome Back!</h1>
+            <p>Enter your personal details to use all of site features</p>
+            <button onClick={switchAuthModeHandler} className={!isLogin ? "" : "hidden"}>
+              Sign In
+            </button>
+          </div>
+          <div className="toggle-panel toggle-right">
+            <h1>Hello, Friend!</h1>
+            <p>Register with your personal details to use all of site features</p>
+            <button onClick={switchAuthModeHandler} className={isLogin ? "" : "hidden"}>
+              Sign Up
+            </button>
+          </div>
+        </div>
+      </div>
+        {isLoading && (
+          <div className="loading-overlay">
+            <LoadingSpinner />
+          </div>
+        )}
+        {error && <p className="error-text">{error}</p>}
       </div>
     </div>
   );

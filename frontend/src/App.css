@@ -8,15 +8,15 @@
 }
 
 :root {
-    --background-color: #2c3e50; /* Dark blue background */
-    --text-color: #ecf0f1; /* Light text for better contrast */
-    --primary-color: #34495e; /* Primary button color */
-    --secondary-color: #4a6fa5; /* Background color for the authentication section */
+    --background-color: #b9c3e4; /* Dark blue background */
+    --text-color: #f8fbfc; /* Light text for better contrast */
+    --primary-color: #74889b; /* Primary button color */
+    --secondary-color: #5b396b; /* Background color for the authentication section */
     --error-color: #f44336; /* Error color */
     --border-radius: 6px; /* Border radius for elements */
     --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Shadow effect */
-    --auth-button-color: #3498db; /* Color for the authenticate button */
-    --auth-button-hover-color: #2980b9; /* Hover color for the button */
+    --auth-button-color: #7434db; /* Color for the authenticate button */
+    --auth-button-hover-color: #8045c4; /* Hover color for the button */
 }
 
 html, body {
@@ -56,7 +56,7 @@ html, body {
 }
 
 .content-section {
-    padding: 50px;
+    padding: 75px;
     margin: 50px;
     border-radius: var(--border-radius); /* Use border-radius from root */
     background: var(--secondary-color); /* Updated to use the secondary color variable */
@@ -67,14 +67,14 @@ html, body {
 /* Section with a different background color for authentication */
 .authentication-section {
     background-color: var(--secondary-color);
-    padding: 10px;
+    padding: 15px;
     display: flex;
     justify-content: center; /* Center align the button */
     align-items: center; /* Vertically align the button */
     box-shadow: var(--box-shadow);
 }
 
-.auth-button {
+.app-button {
     background-color: var(--auth-button-color);
     color: white;
     padding: 10px 15px; /* Increased padding for a larger button */
@@ -85,7 +85,7 @@ html, body {
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
-.auth-button:hover {
+.app-button:hover {
     background-color: var(--auth-button-hover-color);
     transform: translateY(-3px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
