@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext'; // Import AuthContext
 import './Auth.css';
 import LoadingSpinner from './LoadingSpinner';
 
@@ -9,6 +11,9 @@ const Auth = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+
+  const { setIsAuthenticated } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevIsLogin) => !prevIsLogin);
@@ -42,29 +47,37 @@ const Auth = () => {
     setIsLoading(true);
 
     let requestBody;
-if (isLogin) {
-  requestBody = {
-    query: `
-      query {
-        login(email: "${email}", password: "${password}") {
-          userId
-          token
-        }
+    if (isLogin) {
+        requestBody = {
+          query: `
+            query Login($email: String!, $password: String!) {
+              login(email: $email, password: $password) {
+                userId
+                token
+              }
+            }
+          `,
+          variables: {
+            email: email,
+            password: password,
+          }
+        };
+      } else {
+        requestBody = {
+          query: `
+            mutation CreateUser($email: String!, $password: String!) {
+              createUser(input: {email: $email, password: $password}) {
+                _id
+                email
+              }
+            }
+          `,
+          variables: {
+            email: email,
+            password: password,
+          }
+        };
       }
-    `
-  };
-} else {
-  requestBody = {
-    query: `
-      mutation {
-        createUser(input: {email: "${email}", password: "${password}"}) {
-          _id
-          email
-        }
-      }
-    `
-  };
-}
 
     try {
       const response = await fetch('http://localhost:5000/graphql', {
@@ -80,6 +93,8 @@ if (isLogin) {
         setError(responseBody.errors[0].message);
       } else {
         console.log('Success:', responseBody);
+        setIsAuthenticated(true); // Update the authentication state
+        navigate('/dashboard'); // Redirect to the dashboard
       }
     } catch (err) {
       console.error('Network error:', err);

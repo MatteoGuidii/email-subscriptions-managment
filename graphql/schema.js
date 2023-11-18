@@ -15,7 +15,6 @@ type Subscription {
 type User {
     _id: ID!
     email: String!
-    password: String   # Its nullable
 }
 
 type AuthData {

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext'; // Import the AuthProvider
 
 import './App.css';
 import Auth from './pages/Auth'; // Import your Auth component
@@ -42,12 +43,15 @@ const HomePage = () => {
 
 const App = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/authenticate" element={<Auth />} />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/authenticate" element={<Auth />} />
+          {/* Other routes... */}
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 };
 
