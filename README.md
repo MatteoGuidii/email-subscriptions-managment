@@ -39,14 +39,13 @@ npm install
     "MONGO_DB": "yourMongoDBDatabaseName"
   }
 }
+```
+⚠️ Important: Make sure to replace placeholders like `yourMongoDBUsername`, `yourMongoDBPassword`, `yourMongoDBDatabaseName`, and `yourSecretKey` with the actual values that you use for your application's configuration.
 
-
-⚠️ Important: Make sure to replace placeholders like 'yourMongoDBUsername', 'yourMongoDBPassword', 'yourMongoDBDatabaseName', and 'yourSecretKey' with the actual values that you use for your application's configuration.
-
-Set up your '.env' file in the root directory with the secret key and other configuration variables:
+Set up your `.env` file in the root directory with the secret key and other configuration variables:
 SECRET_KEY=yourSecretKey
 
-📝 Note: The '.gitignore' file in your repository should include 'nodemon.json', '.env', and any other configuration files containing sensitive information to ensure they are not accidentally committed to the repository.
+📝 Note: The `.gitignore` file in your repository should include `nodemon.json`, `.env`, and any other configuration files containing sensitive information to ensure they are not accidentally committed to the repository.
 
 Start the backend server:
 npm start
@@ -56,7 +55,7 @@ cd frontend
 npm install
 npm start
 
-Your frontend should now be running and accessible in your browser at 'http://localhost:3000'.
+Your frontend should now be running and accessible in your browser at `http://localhost:3000`.
 🔐 As a best practice, never upload sensitive information like passwords or secret keys to a public repository. Always keep them private, and provide instructions for users to set up their own.
 
 This section clearly outlines the steps needed to set up and run your project, along with important notes on handling sensitive information. Remember to review and update the content as necessary to match your project's specifics.
