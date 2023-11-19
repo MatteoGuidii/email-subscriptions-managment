@@ -80,3 +80,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Contact
 For any inquiries or collaboration opportunities, you can reach me at matteoguidi55@gmail.com.
+
+Project Link: https://github.com/MatteoGuidii/email-subscriptions-managment
+
