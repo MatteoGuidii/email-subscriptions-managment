@@ -1,18 +1,19 @@
-// src/pages/Home.js
+// src/pages/Dashboard.js
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './Home.css';
+import './Dashboard.css';
 
-const Home = () => {
+const Dashboard = () => {
   return (
-    <div className="container">
-      <h1>Welcome to Email Unsubscriber</h1>
-      <p>This application automates the process of unsubscribing from your email account. Authenticate to get started.</p>
-      <div className="button-container">
-        <Link to="/auth" className="button">Authenticate</Link>
+    <div className="dashboard-container">
+      <div className="dashboard-header">
+        <h1>Welcome to Your Dashboard</h1>
+      </div>
+      <div className="dashboard-content">
+        {/* Content */}
+        <button>Click me</button>
       </div>
     </div>
   );
 };
 
-export default Home;
+export default Dashboard;

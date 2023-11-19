@@ -1,6 +1,7 @@
 /* Dashboard.css */
-.dashboard {
+.dashboard-container {
     background: #fff;
+    color: #070707;
     padding: 20px;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
@@ -20,7 +21,17 @@
     text-align: center;
 }
 
-button {
+/* Prefixing button with .dashboard-content to increase specificity */
+.dashboard-content button {
     font-size: 1rem;
     padding: 10px 20px;
+    background-color: var(--primary-color); /* Adjust to primary color */
+    color: var(--text-color);
+    /* Rest of your styles */
+}
+
+/* Adjust to secondary color on hover with increased specificity */
+.dashboard-content button:hover {
+    background-color: var(--secondary-color); /* Adjust to secondary color on hover */
+    /* Rest of your styles */
 }

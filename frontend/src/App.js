@@ -3,9 +3,9 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext'; // Import the AuthProvider
-
 import './App.css';
-import Auth from './pages/Auth'; // Import your Auth component
+import Auth from './pages/Auth';
+import Dashboard from './pages/Dashboard';
 
 
 const HomePage = () => {
@@ -48,6 +48,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/authenticate" element={<Auth />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           {/* Other routes... */}
         </Routes>
       </Router>
