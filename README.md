@@ -63,16 +63,16 @@ This section clearly outlines the steps needed to set up and run your project, a
 ## Dependencies
 This project uses several npm packages:
 
-express: The web framework for the backend.
-express-graphql: An Express middleware to create a GraphQL HTTP server.
-graphql: A query language for your API.
-mongoose: MongoDB object modeling tool designed to work in an asynchronous environment.
-bcrypt: A library for hashing passwords.
-jsonwebtoken: For implementing JWT authentication.
-zxcvbn: For password strength estimation.
-nodemailer: For sending emails.
-react, react-dom: The core React library and its DOM bindings.
-react-router-dom: DOM bindings for React Router.
+- express: The web framework for the backend.
+- express-graphql: An Express middleware to create a GraphQL HTTP server.
+- graphql: A query language for your API.
+- mongoose: MongoDB object modeling tool designed to work in an asynchronous environment.
+- bcrypt: A library for hashing passwords.
+- jsonwebtoken: For implementing JWT authentication.
+- zxcvbn: For password strength estimation.
+- nodemailer: For sending emails.
+- react, react-dom: The core React library and its DOM bindings.
+- react-router-dom: DOM bindings for React Router.
 During development, nodemon is used to automatically restart the server after file changes.
 
 ## License
