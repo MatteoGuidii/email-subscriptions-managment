@@ -40,6 +40,7 @@ npm install
   }
 }
 
+
 ⚠️ Important: Make sure to replace placeholders like 'yourMongoDBUsername', 'yourMongoDBPassword', 'yourMongoDBDatabaseName', and 'yourSecretKey' with the actual values that you use for your application's configuration.
 
 Set up your '.env' file in the root directory with the secret key and other configuration variables:
