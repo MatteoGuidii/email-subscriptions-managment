@@ -5,7 +5,6 @@
 - [Prerequisites](#prerequisites)
 - [Installation and Setup](#installation-and-setup)
 - [Dependencies](#dependencies)
-- [License](#license)
 - [Contact](#contact)
 
 ## Introduction
@@ -75,9 +74,6 @@ This project uses several npm packages:
 - react-router-dom: DOM bindings for React Router.
   
 During development, nodemon is used to automatically restart the server after file changes.
-
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Contact
 For any inquiries or collaboration opportunities, you can reach me at matteoguidi55@gmail.com.
