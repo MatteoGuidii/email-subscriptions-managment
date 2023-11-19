@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext'; // Import AuthContext
+import { AuthContext } from '../context/AuthContext';
 import './Auth.css';
 import LoadingSpinner from './LoadingSpinner';
 
@@ -25,6 +25,19 @@ const Auth = () => {
     return re.test(email);
   };
 
+  const validatePassword = (password) => {
+    const hasMinimumLength = password.length >= 8;
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>_]/.test(password);
+    const hasNumber = /\d/.test(password);
+    const hasUpper = /[A-Z]/.test(password);
+    const hasLower = /[a-z]/.test(password);
+
+    return {
+      isValid: hasMinimumLength && hasSpecialChar && hasNumber && hasUpper && hasLower,
+      message: `Password must be at least 8 characters and include at least one uppercase letter, one lowercase letter, one number, and one special character`
+    };
+  };
+
   const submitHandler = async (event) => {
     event.preventDefault();
 
@@ -33,8 +46,9 @@ const Auth = () => {
       return;
     }
 
-    if (password.trim().length < 6) {
-      setError('Password must be at least 6 characters');
+    const { isValid, message } = validatePassword(password);
+    if (!isValid) {
+      setError(message);
       return;
     }
 
@@ -48,36 +62,38 @@ const Auth = () => {
 
     let requestBody;
     if (isLogin) {
-        requestBody = {
-          query: `
-            query Login($email: String!, $password: String!) {
-              login(email: $email, password: $password) {
-                userId
-                token
-              }
+      // Login logic
+      requestBody = {
+        query: `
+          query Login($email: String!, $password: String!) {
+            login(email: $email, password: $password) {
+              userId
+              token
             }
-          `,
-          variables: {
-            email: email,
-            password: password,
           }
-        };
-      } else {
-        requestBody = {
-          query: `
-            mutation CreateUser($email: String!, $password: String!) {
-              createUser(input: {email: $email, password: $password}) {
-                _id
-                email
-              }
+        `,
+        variables: {
+          email: email,
+          password: password,
+        }
+      };
+    } else {
+      // Sign-up logic
+      requestBody = {
+        query: `
+          mutation CreateUser($email: String!, $password: String!) {
+            createUser(input: {email: $email, password: $password}) {
+              _id
+              email
             }
-          `,
-          variables: {
-            email: email,
-            password: password,
           }
-        };
-      }
+        `,
+        variables: {
+          email: email,
+          password: password,
+        }
+      };
+    }
 
     try {
       const response = await fetch('http://localhost:5000/graphql', {
@@ -90,11 +106,25 @@ const Auth = () => {
 
       const responseBody = await response.json();
       if (responseBody.errors) {
-        setError(responseBody.errors[0].message);
+        const isEmailAlreadyRegistered = responseBody.errors.some(
+          error => error.message === 'Email already registered' // Adjust based on your actual server response
+        );
+
+        if (isEmailAlreadyRegistered) {
+          setError('This email is already registered. Please login or use a different email.');
+        } else {
+          setError(responseBody.errors[0].message);
+        }
       } else {
         console.log('Success:', responseBody);
-        setIsAuthenticated(true); // Update the authentication state
-        navigate('/dashboard'); // Redirect to the dashboard
+        if (isLogin) {
+          setIsAuthenticated(true); // Authenticate and navigate to dashboard for login
+          navigate('/dashboard'); 
+        } else {
+          // Switch to login mode after successful sign-up
+          setIsLogin(true);
+          setError('Account created successfully. Please log in.');
+        }
       }
     } catch (err) {
       console.error('Network error:', err);
@@ -155,6 +185,11 @@ const Auth = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
+              {!validatePassword(password).isValid && password && (
+                <p className="password-requirements">
+                  {validatePassword(password).message}
+                </p>
+              )}
               <input
                 type="password"
                 placeholder="Confirm Password"
@@ -169,23 +204,23 @@ const Auth = () => {
           )}
         </div>
         <div className="toggle-container">
-        <div className="toggle">
-          <div className="toggle-panel toggle-left">
-            <h1>Welcome Back!</h1>
-            <p>Enter your personal details to use all of site features</p>
-            <button onClick={switchAuthModeHandler} className={!isLogin ? "" : "hidden"}>
-              Sign In
-            </button>
-          </div>
-          <div className="toggle-panel toggle-right">
-            <h1>Hello, Friend!</h1>
-            <p>Register with your personal details to use all of site features</p>
-            <button onClick={switchAuthModeHandler} className={isLogin ? "" : "hidden"}>
-              Sign Up
-            </button>
+          <div className="toggle">
+            <div className="toggle-panel toggle-left">
+              <h1>Welcome Back!</h1>
+              <p>Enter your personal details to use all of site features</p>
+              <button onClick={switchAuthModeHandler} className={!isLogin ? "" : "hidden"}>
+                Sign In
+              </button>
+            </div>
+            <div className="toggle-panel toggle-right">
+              <h1>Hello, Friend!</h1>
+              <p>Register with your personal details to use all of site features</p>
+              <button onClick={switchAuthModeHandler} className={isLogin ? "" : "hidden"}>
+                Sign Up
+              </button>
+            </div>
           </div>
         </div>
-      </div>
         {isLoading && (
           <div className="loading-overlay">
             <LoadingSpinner />

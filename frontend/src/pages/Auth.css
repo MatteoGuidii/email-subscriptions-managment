@@ -125,6 +125,37 @@
     animation: move 0.6s;
 }
 
+.container .form-container .password-requirements {
+    color: #555454;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 8px 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-weight: 500;
+    margin-bottom: 15px;
+    animation: fadeIn 0.3s ease-in-out;
+    font-size: 12px;
+    line-height: 1.4;
+    text-align: center;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .error-text {
+    color: red;
+    margin: 10px 0; /* Adjust top margin if needed */
+    text-align: center;
+    font-size: 14px;
+    z-index: 1000;
+    position: relative; /* Or absolute, depending on your layout needs */
+    width: 100%; /* Ensure it spans the full width of the container */
+    box-sizing: border-box; /* To include padding and border in the element's total width */
+    /* Add padding if you want to ensure the text doesn't touch the sides */
+  }
+  
 @keyframes move{
     0%, 49.99%{
         opacity: 0;
