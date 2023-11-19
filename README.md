@@ -73,6 +73,7 @@ This project uses several npm packages:
 - nodemailer: For sending emails.
 - react, react-dom: The core React library and its DOM bindings.
 - react-router-dom: DOM bindings for React Router.
+  
 During development, nodemon is used to automatically restart the server after file changes.
 
 ## License
