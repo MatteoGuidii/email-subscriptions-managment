@@ -55,6 +55,7 @@ npm install
 npm start
 
 Your frontend should now be running and accessible in your browser at `http://localhost:3000`.
+
 🔐 As a best practice, never upload sensitive information like passwords or secret keys to a public repository. Always keep them private, and provide instructions for users to set up their own.
 
 This section clearly outlines the steps needed to set up and run your project, along with important notes on handling sensitive information. Remember to review and update the content as necessary to match your project's specifics.
