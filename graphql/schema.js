@@ -23,6 +23,12 @@ type AuthData {
     tokenExpiration: Int!
 }
 
+type GmailMessage {
+    id: ID!
+    snippet: String!
+    unsubscribeLink: String
+}
+
 input UserInput {
     email: String!
     password: String!
@@ -45,6 +51,7 @@ enum SubscriptionStatus {
 type RootQuery {
     getEmailSubscriptions(email: String!): Email
     login(email: String!, password: String!): AuthData   # Login Query
+    getGmailMessages: [GmailMessage!]  # Fetch messages with unsubscribe links
 }
 
 type RootMutation {
@@ -52,6 +59,7 @@ type RootMutation {
     createEmail(input: EmailInput): Email
     addSubscription(input: SubscriptionInput): Subscription
     unsubscribe(email: String!, subscriptionId: ID!): Subscription
+    unsubscribeFromEmail(unsubscribeUrl: String!): String  # Unsubscribe by link
 }
 
 schema {
