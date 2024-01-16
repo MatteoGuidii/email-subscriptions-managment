@@ -50,9 +50,11 @@ Start the backend server:
 npm start
 
 Navigate to the frontend directory, install dependencies, and start the React app:
-cd frontend
+```
+cd frontend/
 npm install
 npm start
+```
 
 Your frontend should now be running and accessible in your browser at `http://localhost:3000`.
 
