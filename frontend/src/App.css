@@ -46,6 +46,14 @@ html, body {
     color: var(--text-color); /* Using the text color variable for consistency */
 }
 
+/* Increase the bottom margin and font size of h2 elements */
+.content-section h2 {
+    font-size: 1.75rem; /* Increased font size */
+    margin-bottom: 20px; /* Increased bottom margin */
+    text-decoration: underline;
+    color: var(--text-color); /* Ensures consistent text color */
+}
+
 .container p {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: var(--base-font-size); /* Using a variable for font size */
@@ -55,9 +63,20 @@ html, body {
     text-align: center;
 }
 
+/* Style for GitHub link */
+a[href*="github.com"] {
+    color: var(--error-color); /* Use a color from your palette */
+    text-decoration: none; /* Optional: Removes underline */
+}
+
+a[href*="github.com"]:hover {
+    color: var(--auth-button-hover-color); /* Different color on hover for visibility */
+    text-decoration: underline; /* Optional: Adds underline on hover */
+}
+
 .content-section {
-    padding: 75px;
-    margin: 50px;
+    padding: 40px;
+    margin: 40px 40px;
     border-radius: var(--border-radius); /* Use border-radius from root */
     background: var(--secondary-color); /* Updated to use the secondary color variable */
     box-shadow: var(--box-shadow); /* Use box-shadow from root */

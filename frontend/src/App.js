@@ -25,16 +25,22 @@ const HomePage = () => {
         <button className="app-button" onClick={handleAuthenticate}>Authenticate</button>
       </div>
       <header className="App-header">
-        <h1>Your Website Title</h1>
+        <h1>Email Subscription Managment</h1>
       </header>
       <main>
         <section data-aos="fade-up" className="content-section">
-          <h2>Section Title 1</h2>
-          <p>This content will animate in from the bottom as you scroll down.</p>
+          <h2>Automate Email Unsubscription</h2>
+          <p>
+            Explore our Python project designed to automate the process of unsubscribing from unwanted emails. 
+            This tool uses advanced scripting to identify and unsubscribe from marketing emails, helping you manage your inbox more effectively.
+          </p>
         </section>
         <section data-aos="fade-right" className="content-section">
-          <h2>Section Title 2</h2>
-          <p>This content will slide in from the right as you scroll down.</p>
+          <h2>GitHub Repository</h2>
+          <p>
+            Check out the <a href="https://github.com/MatteoGuidii/Algorithm_Unsub_Management" target="_blank" rel="noopener noreferrer">GitHub repository</a> for detailed information 
+            and instructions on how to use the script. Our comprehensive guide covers everything from setup to execution.
+          </p>
         </section>
       </main>
     </div>
